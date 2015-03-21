@@ -1,40 +1,50 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<org.lucasr.dspec.DesignSpecFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    tools:context="materialtest.vivz.slidenerd.fragments.FragmentDrawer">
+    app:designSpec="@raw/spec">
 
-    <LinearLayout
-        android:id="@+id/containerDrawerImage"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FB8C00">
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context="materialtest.vivz.slidenerd.fragments.FragmentDrawer">
 
-        <ImageView
-            android:layout_width="280dp"
-            android:layout_height="140dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="@dimen/drawer_margin_top"
-            android:src="@drawable/ic_abstract" />
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/containerDrawerImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FB8C00">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/drawerList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/containerDrawerImage" />
+            <ImageView
+                android:layout_width="280dp"
+                android:layout_height="140dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="@dimen/drawer_margin_top"
+                android:src="@drawable/ic_abstract" />
+        </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/overlayFrame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/containerDrawerImage">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/drawerList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/containerDrawerImage" />
 
-        <ImageView
-            android:layout_marginTop="@dimen/drawer_margin_top"
-            android:id="@+id/overlayImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
-</RelativeLayout>
+        <FrameLayout
+            android:id="@+id/overlayFrame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/containerDrawerImage">
+
+            <ImageView
+                android:id="@+id/overlayImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/drawer_margin_top" />
+        </FrameLayout>
+    </RelativeLayout>
+
+</org.lucasr.dspec.DesignSpecFrameLayout>
+
+

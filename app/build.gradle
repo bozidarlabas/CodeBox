@@ -23,4 +23,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:recyclerview-v7:22.0.0'
+    compile 'org.lucasr.dspec:dspec:0.1.1'
 }
