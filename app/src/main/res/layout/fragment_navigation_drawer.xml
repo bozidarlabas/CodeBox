@@ -15,6 +15,7 @@
             android:layout_width="280dp"
             android:layout_height="140dp"
             android:layout_marginBottom="16dp"
+            android:layout_marginTop="@dimen/drawer_margin_top"
             android:src="@drawable/ic_abstract" />
     </LinearLayout>
 
@@ -31,6 +32,7 @@
         android:layout_below="@id/containerDrawerImage">
 
         <ImageView
+            android:layout_marginTop="@dimen/drawer_margin_top"
             android:id="@+id/overlayImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

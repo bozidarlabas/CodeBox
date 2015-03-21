@@ -1,17 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
-    </style>
-
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="colorPrimary">@color/primarycolor</item>
         <item name="colorPrimaryDark">@color/primarycolordark</item>
         <item name="colorAccent">@color/accentcolor</item>
-        <item name="android:textColorPrimary">#FFF</item>
-        <item name="android:textColorSecondary">#FFF</item>
     </style>
-
-
 </resources>
