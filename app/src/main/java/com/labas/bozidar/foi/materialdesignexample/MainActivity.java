@@ -23,7 +23,6 @@ public class MainActivity extends ActionBarActivity {
 
         //Set display enabled so user can slide drawer from left
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         //Initialize the DrawerLayout
         NavigationDrawerFragment drawerFreagment =
                 (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
