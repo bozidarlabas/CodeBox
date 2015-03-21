@@ -4,20 +4,27 @@ package com.labas.bozidar.foi.materialdesignexample;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class NavigationDrawerFragment extends Fragment {
+
+    private RecyclerView recyclerView;
+    private MyAdapter adapter;
 
     public static final String PREF_FILE_NAME = "testpref";
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
@@ -46,7 +53,25 @@ public class NavigationDrawerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        recyclerView = (RecyclerView)layout.findViewById(R.id.drawerList);
+        adapter = new MyAdapter(getActivity(), getData());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return layout;
+    }
+
+    public static List<Information> getData(){
+        List<Information> myData = new ArrayList<>();
+        int[] icons = {R.drawable.ic_number1,R.drawable.ic_number2,R.drawable.ic_number3, R.drawable.ic_number4};
+        String[] titles = {"Friends", "Rank", "Dummy1", "Dumy2"};
+        for(int i = 0; i < 4 ; i++){
+            Information current = new Information();
+            current.setIconId(icons[i]);
+            current.setTitle(titles[i]);
+            myData.add(current);
+        }
+        return myData;
     }
 
 
@@ -73,6 +98,7 @@ public class NavigationDrawerFragment extends Fragment {
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
                 if(slideOffset < 0.6){
                     toolbar.setAlpha(1 -slideOffset);
                 }
