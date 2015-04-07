@@ -6,4 +6,6 @@
     <dimen name="drawer_margin_bottom">16dp</dimen>
     <dimen name="drawer_margin_top">24dp</dimen>
     <dimen name="app_bar_top_padding">0dp</dimen>
+    <dimen name="margin_small">1dp</dimen>
+    <dimen name="text_large">30sp</dimen>
 </resources>

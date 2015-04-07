@@ -4,28 +4,28 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
 
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        tools:context="com.labas.bozidar.foi.materialdesignexample.MainActivity">
+        tools:context="com.labas.bozidar.foi.materialdesignexample.ui.main.MainActivity">
 
         <include
             android:id="@+id/app_bar"
             layout="@layout/app_bar" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/app_bar"
-            android:text="@string/hello_world" />
+        <include
+            android:id="@+id/content"
+            layout="@layout/activity_main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/app_bar" />
 
     </RelativeLayout>
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="com.labas.bozidar.foi.materialdesignexample.NavigationDrawerFragment"
+        android:name="com.labas.bozidar.foi.materialdesignexample.ui.main.NavigationDrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
@@ -33,5 +33,3 @@
         tools:layout="@layout/fragment_navigation_drawer" />
 
 </android.support.v4.widget.DrawerLayout>
-
-

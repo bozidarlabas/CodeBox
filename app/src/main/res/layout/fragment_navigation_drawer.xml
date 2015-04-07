@@ -1,15 +1,9 @@
-<org.lucasr.dspec.DesignSpecFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:designSpec="@raw/spec">
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        tools:context="materialtest.vivz.slidenerd.fragments.FragmentDrawer">
+    tools:context="com.labas.bozidar.foi.materialdesignexample.SubActivity">
 
         <LinearLayout
             android:id="@+id/containerDrawerImage"
@@ -44,7 +38,7 @@
                 android:layout_marginTop="@dimen/drawer_margin_top" />
         </FrameLayout>
     </RelativeLayout>
-</org.lucasr.dspec.DesignSpecFrameLayout>
+
 
 
 

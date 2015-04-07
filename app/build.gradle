@@ -23,5 +23,9 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.android.support:recyclerview-v7:22.0.0'
-    compile 'org.lucasr.dspec:dspec:0.1.1'
+    compile 'com.github.traex.rippleeffect:library:1.2.4'
+    compile 'com.google.android.gms:play-services:6.5.87'
+    compile 'com.squareup.dagger:dagger:1.2.+'
+    provided 'com.squareup.dagger:dagger-compiler:1.2.+'
+    compile 'com.jakewharton:butterknife:6.1.0'
 }

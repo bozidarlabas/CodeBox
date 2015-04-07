@@ -1,4 +1,4 @@
-package com.labas.bozidar.foi.materialdesignexample;
+package com.labas.bozidar.foi.materialdesignexample.ui.main.models;
 
 /**
  * Created by bozidar on 21.03.15..

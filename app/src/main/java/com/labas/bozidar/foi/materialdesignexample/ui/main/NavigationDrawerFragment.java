@@ -1,4 +1,4 @@
-package com.labas.bozidar.foi.materialdesignexample;
+package com.labas.bozidar.foi.materialdesignexample.ui.main;
 
 
 import android.content.Context;
@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.labas.bozidar.foi.materialdesignexample.R;
+import com.labas.bozidar.foi.materialdesignexample.ui.main.models.Information;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,9 +66,9 @@ public class NavigationDrawerFragment extends Fragment {
 
     public static List<Information> getData(){
         List<Information> myData = new ArrayList<>();
-        int[] icons = {R.drawable.ic_number1,R.drawable.ic_number2,R.drawable.ic_number3, R.drawable.ic_number4};
-        String[] titles = {"Friends", "Rank", "Dummy1", "Dumy2"};
-        for(int i = 0; i < 4 ; i++){
+        int[] icons = {R.drawable.ic_number1,R.drawable.ic_number2};
+        String[] titles = {"Friends", "Rank",};
+        for(int i = 0; i < icons.length && i < titles.length ; i++){
             Information current = new Information();
             current.setIconId(icons[i]);
             current.setTitle(titles[i]);
