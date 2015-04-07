@@ -63,7 +63,6 @@
             android:layout_below="@+id/btnLogin"
             android:layout_marginTop="10dp"
             android:background="@color/accentcolor"
-            android:onClick="register"
             android:text="@string/Registration"
             android:textColor="#FFFFFF" />
 

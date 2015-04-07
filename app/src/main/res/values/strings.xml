@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MaterialDesignExample</string>
+    <string name="app_name">CodeBox</string>
     <string name="title_activity_main">CodeBox</string>
 
     <string name="hello_world">Hello world!</string>
@@ -17,7 +17,7 @@
     <string name="objectivecLanguage">Objective C</string>
     <string name="pythonLanguage">Python</string>
     <string name="jsLanguage">JS</string>
-    <string name="rubyLanguage">Ruby</string>
+    <string name="javaLanguage">Java</string>
     <string name="Username">Username</string>
     <string name="Password">Password</string>
     <string name="Login">Login</string>
