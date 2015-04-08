@@ -14,7 +14,7 @@
     <string name="cSharpLanguage">C#</string>
     <string name="JavaLanguage">Java</string>
     <string name="phpLanguage">PHP</string>
-    <string name="objectivecLanguage">Objective C</string>
+    <string name="objectiveCLanguage">Objective C</string>
     <string name="pythonLanguage">Python</string>
     <string name="jsLanguage">JS</string>
     <string name="javaLanguage">Java</string>
@@ -22,4 +22,5 @@
     <string name="Password">Password</string>
     <string name="Login">Login</string>
     <string name="Registration">Registration</string>
+    <string name="title_activity_quiz">QuizActivity</string>
 </resources>

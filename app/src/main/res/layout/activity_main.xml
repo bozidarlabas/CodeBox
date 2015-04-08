@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.labas.bozidar.foi.codebox.ui.main.MainActivity">
+        tools:context="com.labas.bozidar.foi.codebox.activities.MainActivity">
 
         <include
             android:id="@+id/app_bar"
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="com.labas.bozidar.foi.codebox.ui.main.NavigationDrawerFragment"
+        android:name="com.labas.bozidar.foi.codebox.fragments.NavigationDrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
