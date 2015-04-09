@@ -1,0 +1,28 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentCounter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.labas.bozidar.foi.codebox.ui.MainLogoFragment">
+
+
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:src="@drawable/counter_img_small" />
+
+    <TextView
+        android:id="@+id/tvCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="5dip"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:textColor="#fff"
+        android:text="1"
+        android:textSize="30sp"/>
+
+
+</FrameLayout>

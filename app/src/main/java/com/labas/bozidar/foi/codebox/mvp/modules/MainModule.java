@@ -1,11 +1,11 @@
 package com.labas.bozidar.foi.codebox.mvp.modules;
 
 import com.labas.bozidar.foi.codebox.AppModule;
+import com.labas.bozidar.foi.codebox.activities.MainActivity;
 import com.labas.bozidar.foi.codebox.mvp.interactors.MainInteractor;
 import com.labas.bozidar.foi.codebox.mvp.interactors.impl.MainInteractorImpl;
-import com.labas.bozidar.foi.codebox.activities.MainActivity;
-import com.labas.bozidar.foi.codebox.mvp.presenters.impl.MainPresenterImpl;
 import com.labas.bozidar.foi.codebox.mvp.presenters.MainPresenter;
+import com.labas.bozidar.foi.codebox.mvp.presenters.impl.MainPresenterImpl;
 import com.labas.bozidar.foi.codebox.mvp.views.MainView;
 
 import javax.inject.Singleton;
@@ -47,5 +47,4 @@ public class MainModule {
     MainInteractor provideMainInteractor(){
         return new MainInteractorImpl();
     }
-
 }

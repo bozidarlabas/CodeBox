@@ -1,24 +1,23 @@
 package com.labas.bozidar.foi.codebox.activities;
 
-import android.animation.AnimatorSet;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.labas.bozidar.foi.codebox.R;
+import com.labas.bozidar.foi.codebox.fragments.CounterFragment;
 import com.labas.bozidar.foi.codebox.fragments.MainLogoFragment;
-import com.labas.bozidar.foi.codebox.fragments.MainSelectionFragment;
+import com.labas.bozidar.foi.codebox.mvp.models.Question;
 import com.labas.bozidar.foi.codebox.mvp.modules.MainModule;
-import com.labas.bozidar.foi.codebox.fragments.NavigationDrawerFragment;
 import com.labas.bozidar.foi.codebox.mvp.presenters.MainPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.MainView;
 
@@ -28,38 +27,31 @@ import java.util.Stack;
 
 import javax.inject.Inject;
 
-import butterknife.InjectView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     @Inject
-    MainPresenter mainPresenter;
-
-    @InjectView(R.id.imgLogo)
-    ImageView imageView;
-
-    private AnimatorSet animatorSet;
-    private Toolbar toolbar;
-    public Stack<String> mFragmentStack;
+    public MainPresenter mainPresenter;
+    private Stack<String> mFragmentStack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getLayoutsById();
 
         setSupportActionBar(toolbar = (Toolbar) findViewById(R.id.app_bar));
         //Set display enabled so user can slide drawer from left
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //Initialize the DrawerLayout
-        NavigationDrawerFragment drawerFreagment =
-                (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        drawerFreagment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
-        //fragment
+        setNavigationDrawer();
+        setFragment();
+        ButterKnife.inject(this);
+    }
 
-        mFragmentStack = new Stack<String>();
-
+    private void setFragment() {
+        mFragmentStack = new Stack<>();
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         MainLogoFragment fragment = new MainLogoFragment();
@@ -68,11 +60,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         transaction.add(R.id.fragment, fragment, tag);
         transaction.addToBackStack(tag);
         transaction.commit();
-
-
-
-
     }
+
 
     @Override
     protected List<Object> getModules() {
@@ -80,9 +69,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void setAnimation() {
+    public void setFragmentTransition(Fragment newFragment) {
 
-        Fragment newFragment = new MainSelectionFragment();
         String tag = newFragment.toString();
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -95,45 +83,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         transaction.addToBackStack(tag);
         mFragmentStack.add(tag);
         transaction.commit();
-
-
     }
 
-    public void getLayoutsById() {
-        findViewById(R.id.btnC).setOnClickListener(this);
-        findViewById(R.id.btnCpp).setOnClickListener(this);
-        findViewById(R.id.btnCsharp).setOnClickListener(this);
-        findViewById(R.id.btnPython).setOnClickListener(this);
-        findViewById(R.id.btnJS).setOnClickListener(this);
-        findViewById(R.id.btnRuby).setOnClickListener(this);
-    }
-
-
+    //TODO set counter while fetching data from server
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void setActivityTransition(List<Question> questions) {
+
+        Intent activity = new Intent(this, QuizActivity.class);
+        activity.putExtra("questionObject", new Gson().toJson(questions));
+        startActivity(activity);
+
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void onChangeCounterText(String text) {
+        CounterFragment fragment = (CounterFragment)getFragmentManager().findFragmentById(R.id.fragment);
+        ((TextView) fragment.getView().findViewById(R.id.tvCounter)).setText(text);
     }
 
-    @Override
+
+    @OnClick({R.id.btnC, R.id.btnCpp, R.id.btnCsharp, R.id.btnPython, R.id.btnJS, R.id.btnRuby})
     public void onClick(View view) {
-        mainPresenter.onButtonClicked(view);
+        mainPresenter.onLangButtonClicked(view);
     }
 
     public void changButtonStyle(View view, int colorBackground, int colorText) {
@@ -155,7 +127,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    public void setTransition() {
-
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

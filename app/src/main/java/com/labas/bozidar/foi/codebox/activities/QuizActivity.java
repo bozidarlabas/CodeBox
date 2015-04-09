@@ -1,40 +1,42 @@
 package com.labas.bozidar.foi.codebox.activities;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.labas.bozidar.foi.codebox.R;
+import com.labas.bozidar.foi.codebox.fragments.questions.QuestionOne;
 
-public class QuizActivity extends ActionBarActivity {
+import java.util.List;
+
+public class QuizActivity extends BaseActivity implements QuestionOne.OnFragmentInteractionListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        setFragment();
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_quiz, menu);
-        return true;
+    private void setFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        QuestionOne fragment = QuestionOne.newInstance("1", "1", "1", "1", "1", "1");
+        String tag = fragment.toString();
+        transaction.add(R.id.fragmentQuiz, fragment, tag);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected List<Object> getModules() {
+        return null;
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-        return super.onOptionsItemSelected(item);
     }
 }
