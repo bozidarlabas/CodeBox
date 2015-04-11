@@ -7,18 +7,48 @@
     tools:context="com.labas.bozidar.foi.codebox.activities.QuizActivity">
 
 
-    <include
-        android:id="@+id/app_bar"
-        layout="@layout/app_bar" />
+    <LinearLayout
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dip">
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            android:text="@string/Score"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/tvScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="5dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_weight="1"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </LinearLayout>
 
 
     <FrameLayout
         android:id="@+id/fragmentQuiz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar"
-        android:layout_marginTop="10dip"
-        android:padding="10dip">
+        android:layout_below="@+id/status"
+        android:layout_marginTop="5dip"
+        android:padding="5dip">
+
 
     </FrameLayout>
 

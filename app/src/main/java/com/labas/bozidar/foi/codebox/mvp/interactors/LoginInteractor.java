@@ -7,4 +7,5 @@ import com.labas.bozidar.foi.codebox.mvp.listeners.OnLoginFInishedListener;
  */
 public interface LoginInteractor {
     public void login(String username, String password, OnLoginFInishedListener listener);
+    public void register(String username, String password);
 }

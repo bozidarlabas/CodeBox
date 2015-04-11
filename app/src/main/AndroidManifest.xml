@@ -39,6 +39,10 @@
             android:name=".activities.QuizActivity"
             android:label="@string/title_activity_quiz" >
         </activity>
+        <activity
+            android:name=".activities.RegistrationActivity"
+            android:label="@string/title_activity_registration" >
+        </activity>
     </application>
 
 </manifest>

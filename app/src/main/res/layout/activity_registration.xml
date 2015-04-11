@@ -1,0 +1,63 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/accentcolor"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/logo" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:background="#f3f3f3"
+                android:hint="username"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="#f3f3f3"
+                android:hint="password"
+                android:paddingLeft="5dp" />
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="#f3f3f3"
+                android:hint="mobile"
+                android:paddingLeft="5dp" />
+
+
+
+
+
+            <Button
+                android:layout_width="190dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn"
+                android:text="submit"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+    </LinearLayout>

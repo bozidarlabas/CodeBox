@@ -5,5 +5,6 @@ package com.labas.bozidar.foi.codebox.mvp.presenters;
  */
 public interface LoginPresenter {
     void validate(String username, String password);
+    void sendRegistrationData(String username, String passwrod);
 
 }

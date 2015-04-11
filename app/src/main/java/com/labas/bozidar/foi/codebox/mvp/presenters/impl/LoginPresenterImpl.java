@@ -1,8 +1,8 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
 import com.labas.bozidar.foi.codebox.mvp.interactors.LoginInteractor;
-import com.labas.bozidar.foi.codebox.mvp.presenters.LoginPresenter;
 import com.labas.bozidar.foi.codebox.mvp.listeners.OnLoginFInishedListener;
+import com.labas.bozidar.foi.codebox.mvp.presenters.LoginPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.LoginView;
 
 import javax.inject.Inject;
@@ -22,11 +22,14 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
         this.loginInteractor = loginInteractor;
     }
 
+    //LOGIN (activity)
     @Override
     public void validate(String username, String password) {
         loginView.showProgress();
         loginInteractor.login(username, password, this);
     }
+
+
 
 
     @Override
@@ -43,4 +46,15 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
     public void onSuccess() {
         loginView.navigateToHome();
     }
+
+    //REGISTER (dialog inside activity)
+
+    @Override
+    public void sendRegistrationData(String username, String password) {
+        loginInteractor.register(username, password);
+    }
+
+
+
+
 }

@@ -23,4 +23,12 @@
     <string name="Login">Login</string>
     <string name="Registration">Registration</string>
     <string name="title_activity_quiz">QuizActivity</string>
+    <string name="Score">Score: </string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="ok">Ok</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="register">Register</string>
+    <string name="play">Play</string>
+    <string name="exit">Exit</string>
 </resources>

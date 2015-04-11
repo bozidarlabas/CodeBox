@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/button"
-            android:text="Play"
+            android:background="@drawable/button_edge_only"
+            android:text="@string/play"
             android:textSize="20sp"/>
 
         <ImageView
@@ -34,11 +34,11 @@
 
         <Button
             android:textSize="20sp"
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/button"
-            android:text="Cancel" />
+            android:background="@drawable/button_edge_only"
+            android:text="@string/exit" />
     </LinearLayout>
 </FrameLayout>

@@ -7,5 +7,4 @@ import android.view.View;
  */
 public interface MainPresenter {
     public void onLangButtonClicked(View view);
-    public void onPlayButtonClicked();
 }

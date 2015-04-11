@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.labas.bozidar.foi.codebox.R;
+import com.labas.bozidar.foi.codebox.dialogs.RegisterDialog;
 import com.labas.bozidar.foi.codebox.mvp.modules.LoginModule;
 import com.labas.bozidar.foi.codebox.mvp.presenters.LoginPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.LoginView;
@@ -23,7 +24,7 @@ import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView, RegisterDialog.OnClickListener {
 
     @Inject
     LoginPresenter presenter;
@@ -34,6 +35,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     Button btnLogin;
     @InjectViews({R.id.etUsername, R.id.etPassword})
     List<EditText> credentials;
+    private RegisterDialog registerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
         setContentView(R.layout.activity_login);
         setSupportActionBar((Toolbar)findViewById(R.id.app_bar));
         ButterKnife.inject(this);
+        main();
+    }
+
+    private void main(){
+        registerDialog = new RegisterDialog(this);
+        registerDialog.setOnButtonCLickListener(this);
     }
 
     private void setLayouts() {
@@ -64,7 +72,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void setPasswordError() {
-        credentials.get(1).setError("Pssword is empty");
+        credentials.get(1).setError("Password is empty");
     }
 
     @Override
@@ -73,7 +81,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         finish();
     }
 
-    //Abstract method from BaseActivity class
     @Override
     protected List<Object> getModules() {
         return Arrays.<Object>asList(new LoginModule(this));
@@ -83,5 +90,15 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void klik() {
         //TODO call presenter (username, password)
         presenter.validate("b", "1");
+    }
+
+    @OnClick(R.id.btnRegistration)
+    public void registration(){
+        this.registerDialog.showDialog();
+    }
+
+    @Override
+    public void onClickListener(String username, String password) {
+        presenter.sendRegistrationData(username, password);
     }
 }

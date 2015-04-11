@@ -3,7 +3,6 @@ package com.labas.bozidar.foi.codebox.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,11 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.labas.bozidar.foi.codebox.R;
 import com.labas.bozidar.foi.codebox.fragments.CounterFragment;
 import com.labas.bozidar.foi.codebox.fragments.MainLogoFragment;
-import com.labas.bozidar.foi.codebox.mvp.models.Question;
 import com.labas.bozidar.foi.codebox.mvp.modules.MainModule;
 import com.labas.bozidar.foi.codebox.mvp.presenters.MainPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.MainView;
@@ -36,6 +33,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Inject
     public MainPresenter mainPresenter;
     private Stack<String> mFragmentStack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,17 +83,6 @@ public class MainActivity extends BaseActivity implements MainView {
         transaction.commit();
     }
 
-    //TODO set counter while fetching data from server
-    @Override
-    public void setActivityTransition(List<Question> questions) {
-
-        Intent activity = new Intent(this, QuizActivity.class);
-        activity.putExtra("questionObject", new Gson().toJson(questions));
-        startActivity(activity);
-
-        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-    }
-
     @Override
     public void onChangeCounterText(String text) {
         CounterFragment fragment = (CounterFragment)getFragmentManager().findFragmentById(R.id.fragment);
@@ -140,5 +127,7 @@ public class MainActivity extends BaseActivity implements MainView {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }

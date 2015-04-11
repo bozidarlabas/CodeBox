@@ -2,6 +2,8 @@ package com.labas.bozidar.foi.codebox;
 
 import android.app.Application;
 
+import com.labas.bozidar.foi.codebox.mvp.models.User;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -24,5 +26,11 @@ public class AppModule {
     @Singleton
     Application provideApplication() {
         return app;
+    }
+
+    @Provides
+    @Singleton
+    User provideUser() {
+        return new User();
     }
 }
