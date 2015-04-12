@@ -3,6 +3,7 @@ package com.labas.bozidar.foi.codebox.activities;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,9 +15,12 @@ import android.widget.TextView;
 import com.labas.bozidar.foi.codebox.R;
 import com.labas.bozidar.foi.codebox.fragments.CounterFragment;
 import com.labas.bozidar.foi.codebox.fragments.MainLogoFragment;
+import com.labas.bozidar.foi.codebox.fragments.MainSelectionFragment;
+import com.labas.bozidar.foi.codebox.fragments.NavigationDrawerFragment;
 import com.labas.bozidar.foi.codebox.mvp.modules.MainModule;
 import com.labas.bozidar.foi.codebox.mvp.presenters.MainPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.MainView;
+import com.labas.bozidar.foi.codebox.util.Constants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,24 +32,42 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends BaseActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView, MainSelectionFragment.OnActivityTransition, NavigationDrawerFragment.OnDrawerDataChanged {
 
     @Inject
     public MainPresenter mainPresenter;
     private Stack<String> mFragmentStack;
+
+    private String username;
+    private int totalScore;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        main(true);
         setSupportActionBar(toolbar = (Toolbar) findViewById(R.id.app_bar));
         //Set display enabled so user can slide drawer from left
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setNavigationDrawer();
         setFragment();
         ButterKnife.inject(this);
+
+    }
+
+    private void main(boolean init){
+        if(init){
+            Bundle extras = getIntent().getExtras();
+            if(extras != null){
+                username = extras.getString(Constants.KEY_USERNAME);
+                totalScore = extras.getInt(Constants.KEY_SCORE);
+                getNavigationDrawerFragment().setData(username, totalScore);
+            }
+        }else{
+            mainPresenter.onDataRestored(this);
+        }
+
     }
 
     private void setFragment() {
@@ -89,6 +111,13 @@ public class MainActivity extends BaseActivity implements MainView {
         ((TextView) fragment.getView().findViewById(R.id.tvCounter)).setText(text);
     }
 
+    @Override
+    public void onDataRestored(String username, int score) {
+        this.username = username;
+        this.totalScore = score;
+        getNavigationDrawerFragment().setData(username, totalScore);
+    }
+
 
     @OnClick({R.id.btnC, R.id.btnCpp, R.id.btnCsharp, R.id.btnPython, R.id.btnJS, R.id.btnRuby})
     public void onClick(View view) {
@@ -128,6 +157,23 @@ public class MainActivity extends BaseActivity implements MainView {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void navigateToQuizActivity() {
+        Intent intent = new Intent(this, QuizActivity.class);
+        intent.putExtra(Constants.KEY_USERNAME, username);
+        intent.putExtra(Constants.KEY_SCORE, totalScore);
+        startActivity(intent);
+        overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        main(false);
+    }
 
+    @Override
+    public void onDrawerDataChanged() {
+
+    }
 }

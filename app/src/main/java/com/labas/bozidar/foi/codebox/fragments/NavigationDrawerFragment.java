@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.labas.bozidar.foi.codebox.R;
 import com.labas.bozidar.foi.codebox.adapters.MyAdapter;
@@ -20,6 +21,9 @@ import com.labas.bozidar.foi.codebox.mvp.models.Information;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 
 
 /**
@@ -38,6 +42,14 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mUserLearnedDrawer;
     private boolean mFromSavedInstanceState;
     private View containerView;
+    private String username;
+    private int score;
+
+    @InjectView(R.id.tvName)
+    TextView tvName;
+
+    @InjectView(R.id.tvScore)
+    TextView tvScore;
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -58,18 +70,19 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        recyclerView = (RecyclerView)layout.findViewById(R.id.drawerList);
+        recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
         adapter = new MyAdapter(getActivity(), getData());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        ButterKnife.inject(this, layout);
         return layout;
     }
 
-    public static List<Information> getData(){
+    public static List<Information> getData() {
         List<Information> myData = new ArrayList<>();
-        int[] icons = {R.drawable.ic_number1,R.drawable.ic_number2};
+        int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2};
         String[] titles = {"Friends", "Rank",};
-        for(int i = 0; i < icons.length && i < titles.length ; i++){
+        for (int i = 0; i < icons.length && i < titles.length; i++) {
             Information current = new Information();
             current.setIconId(icons[i]);
             current.setTitle(titles[i]);
@@ -103,8 +116,8 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-                if(slideOffset < 0.6){
-                    toolbar.setAlpha(1 -slideOffset);
+                if (slideOffset < 0.6) {
+                    toolbar.setAlpha(1 - slideOffset);
                 }
             }
         };
@@ -121,6 +134,23 @@ public class NavigationDrawerFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setViews();
+    }
+
+    public void setData(String username, int score) {
+        this.username = username;
+        this.score = score;
+    }
+
+    private void setViews(){
+        tvName.setText("username: " + username);
+        tvScore.setText("Total score: " + score);
+
+    }
+
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -131,5 +161,9 @@ public class NavigationDrawerFragment extends Fragment {
     public static String readFromPreferences(Context context, String preferenceName, String defaultValue) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
         return sharedPreferences.getString(preferenceName, defaultValue);
+    }
+
+    public interface OnDrawerDataChanged {
+        public void onDrawerDataChanged();
     }
 }

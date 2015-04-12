@@ -5,4 +5,7 @@ package com.labas.bozidar.foi.codebox.util;
  */
 public class Constants {
     public static final String SERVER_ENDPOINT = "http://bozidarlabas.me";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_SCORE = "score";
+    public static final String PREFS_KEY = "CodeBoxPrefs";
 }

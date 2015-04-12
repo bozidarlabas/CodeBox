@@ -1,5 +1,6 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters;
 
+import android.content.Context;
 import android.view.View;
 
 /**
@@ -7,4 +8,5 @@ import android.view.View;
  */
 public interface MainPresenter {
     public void onLangButtonClicked(View view);
+    public void onDataRestored(Context context);
 }

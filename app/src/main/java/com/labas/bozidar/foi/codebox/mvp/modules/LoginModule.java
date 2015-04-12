@@ -1,9 +1,9 @@
 package com.labas.bozidar.foi.codebox.mvp.modules;
 
 import com.labas.bozidar.foi.codebox.AppModule;
+import com.labas.bozidar.foi.codebox.activities.LoginActivity;
 import com.labas.bozidar.foi.codebox.mvp.interactors.LoginInteractor;
 import com.labas.bozidar.foi.codebox.mvp.interactors.impl.LoginInteractorImpl;
-import com.labas.bozidar.foi.codebox.activities.LoginActivity;
 import com.labas.bozidar.foi.codebox.mvp.presenters.LoginPresenter;
 import com.labas.bozidar.foi.codebox.mvp.presenters.impl.LoginPresenterImpl;
 import com.labas.bozidar.foi.codebox.mvp.views.LoginView;

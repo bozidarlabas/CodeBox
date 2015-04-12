@@ -1,6 +1,7 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.view.View;
 
 import com.labas.bozidar.foi.codebox.mvp.interactors.MainInteractor;
@@ -28,6 +29,11 @@ public class MainPresenterImpl implements MainPresenter, OnButtonChangedListener
     }
 
     @Override
+    public void onDataRestored(Context context) {
+        mainInteractor.restoreData(context, this);
+    }
+
+    @Override
     public void changeSelectedButtonStyle(View view) {
         mainView.onChangeSelectedButton(view);
     }
@@ -48,4 +54,8 @@ public class MainPresenterImpl implements MainPresenter, OnButtonChangedListener
         mainView.onChangeCounterText(text);
     }
 
+    @Override
+    public void setRestoredData(String username, int score) {
+        mainView.onDataRestored(username, score);
+    }
 }

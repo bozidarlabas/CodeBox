@@ -11,4 +11,5 @@ public interface OnButtonChangedListener {
     public void changePreviousButtonStyle(View view);
     public void changeAnimation(Fragment fragment);
     public void changeTimmerText(String text);
+    public void setRestoredData(String username, int score);
 }

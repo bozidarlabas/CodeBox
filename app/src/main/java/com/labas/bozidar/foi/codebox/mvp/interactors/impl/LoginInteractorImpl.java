@@ -1,12 +1,12 @@
 package com.labas.bozidar.foi.codebox.mvp.interactors.impl;
 
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.labas.bozidar.foi.codebox.mvp.interactors.LoginInteractor;
 import com.labas.bozidar.foi.codebox.mvp.listeners.OnLoginFInishedListener;
 import com.labas.bozidar.foi.codebox.mvp.models.RequestAPI;
+import com.labas.bozidar.foi.codebox.mvp.models.User;
 import com.labas.bozidar.foi.codebox.util.Constants;
 
 import retrofit.Callback;
@@ -19,10 +19,46 @@ import retrofit.client.Response;
  */
 public class LoginInteractorImpl implements LoginInteractor {
 
-    //TODO this is just testing login with hardcoded data
     @Override
     public void login(final String username, final String password, final OnLoginFInishedListener listener) {
-        new Handler().postDelayed(new Runnable() {
+        boolean error = false;
+        if (TextUtils.isEmpty(username)){
+            listener.onUsernameError();
+            error = true;
+        }
+
+        if(TextUtils.isEmpty(password)){
+            listener.onPasswordError();
+            error = true;
+        }
+
+        if(!error){
+            RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(Constants.SERVER_ENDPOINT).build();
+            RequestAPI api = restAdapter.create(RequestAPI.class);
+            api.sendLoginRequest(username, password, new Callback<User>(){
+
+                @Override
+                public void success(User user, Response response) {
+                   if(user != null){
+                       listener.onSuccess(user);
+                   }else{
+                       listener.onFailure();
+                   }
+                   listener.onHideProgress();
+                }
+
+                @Override
+                public void failure(RetrofitError error) {
+                    listener.onHideProgress();
+                    listener.onFailure();
+                }
+            });
+        }
+
+
+
+
+        /*new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 boolean error = false;
                 if (TextUtils.isEmpty(username)){
@@ -38,6 +74,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                 }
             }
         }, 100);
+        */
     }
 
     //TODO send data to backend where data will be stored in database
@@ -60,4 +97,6 @@ public class LoginInteractorImpl implements LoginInteractor {
 
 
     }
+
+
 }

@@ -9,10 +9,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.labas.bozidar.foi.codebox.R;
+import com.labas.bozidar.foi.codebox.dialogs.NotificationDialog;
 import com.labas.bozidar.foi.codebox.dialogs.RegisterDialog;
+import com.labas.bozidar.foi.codebox.mvp.models.User;
 import com.labas.bozidar.foi.codebox.mvp.modules.LoginModule;
 import com.labas.bozidar.foi.codebox.mvp.presenters.LoginPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.LoginView;
+import com.labas.bozidar.foi.codebox.util.Constants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +37,9 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
     @InjectView(R.id.btnLogin)
     Button btnLogin;
     @InjectViews({R.id.etUsername, R.id.etPassword})
-    List<EditText> credentials;
+    List<EditText> userData;
     private RegisterDialog registerDialog;
+    private NotificationDialog notificationDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,7 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
 
     private void main(){
         registerDialog = new RegisterDialog(this);
+        notificationDialog = new NotificationDialog(this);
         registerDialog.setOnButtonCLickListener(this);
     }
 
@@ -67,18 +72,27 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
 
     @Override
     public void setUsernameError() {
-        credentials.get(0).setError("Username is empty");
+        userData.get(0).setError("Username is empty");
     }
 
     @Override
     public void setPasswordError() {
-        credentials.get(1).setError("Password is empty");
+        userData.get(1).setError("Password is empty");
     }
 
     @Override
-    public void navigateToHome() {
-        startActivity(new Intent(this, MainActivity.class));
+    public void navigateToHome(User user) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Constants.KEY_USERNAME, user.getUsername());
+        intent.putExtra(Constants.KEY_SCORE, user.getScore());
+        startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void showErrorDialog() {
+        notificationDialog.setDialogArgs();
+        notificationDialog.showDialog();
     }
 
     @Override
@@ -88,8 +102,9 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
 
     @OnClick(R.id.btnLogin)
     public void klik() {
-        //TODO call presenter (username, password)
-        presenter.validate("b", "1");
+        String userName = userData.get(0).getText().toString();
+        String password = userData.get(1).getText().toString();
+        presenter.validate(userName, password);
     }
 
     @OnClick(R.id.btnRegistration)

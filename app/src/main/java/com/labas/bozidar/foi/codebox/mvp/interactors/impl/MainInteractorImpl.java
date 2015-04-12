@@ -1,11 +1,14 @@
 package com.labas.bozidar.foi.codebox.mvp.interactors.impl;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 
 import com.labas.bozidar.foi.codebox.fragments.CounterFragment;
 import com.labas.bozidar.foi.codebox.fragments.MainSelectionFragment;
 import com.labas.bozidar.foi.codebox.mvp.interactors.MainInteractor;
 import com.labas.bozidar.foi.codebox.mvp.listeners.OnButtonChangedListener;
+import com.labas.bozidar.foi.codebox.util.Constants;
 
 /**
  * Created by bozidar on 26.03.15..
@@ -36,5 +39,13 @@ public class MainInteractorImpl implements MainInteractor {
         if (!selectedButton)
             listener.changeAnimation(fragment);
         selectedButton = true;
+    }
+
+    @Override
+    public void restoreData(Context context, OnButtonChangedListener listener) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREFS_KEY,Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString(Constants.KEY_USERNAME, "");
+        int score = sharedPreferences.getInt(Constants.KEY_SCORE, 0);
+        listener.setRestoredData(username, score);
     }
 }

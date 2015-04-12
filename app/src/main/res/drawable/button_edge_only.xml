@@ -5,6 +5,6 @@
     </corners>
     <stroke
         android:width="2dip"
-        android:color="@color/accentcolor">
+        android:color="@color/background_white">
     </stroke>
 </shape>

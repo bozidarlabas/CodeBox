@@ -1,7 +1,10 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.util.Log;
 
+import com.labas.bozidar.foi.codebox.fragments.ScoreFragment;
 import com.labas.bozidar.foi.codebox.fragments.questions.QuestionFive;
 import com.labas.bozidar.foi.codebox.fragments.questions.QuestionFour;
 import com.labas.bozidar.foi.codebox.fragments.questions.QuestionOne;
@@ -34,6 +37,7 @@ public class QuizPresenterImpl implements QuizPresenter, onDataListener {
         this.quizInteractor = quizInteractor;
         this.user = user;
     }
+
 
     @Override
     public void onQuizActivityStarted() {
@@ -71,17 +75,63 @@ public class QuizPresenterImpl implements QuizPresenter, onDataListener {
     }
 
     @Override
+    public void onTImerStoped() {
+        quizInteractor.stopTimer(this);
+    }
+
+    @Override
+    public Fragment getFragment(int fragmentCounter) {
+        Fragment newFragment;
+        Log.d("korisnik: ", user.getScore() + "");
+        if (fragmentCounter == 5) {
+            user.setScore(user.getScore() + user.getCurrentResult());
+            String score = Integer.toString(user.getCurrentResult());
+            String totalScore = Integer.toString(user.getScore());
+            newFragment = ScoreFragment.newInstance(score, totalScore);
+            onTImerStoped();
+            clearScoreText();
+        } else{
+            newFragment = getFragments().get(fragmentCounter);
+            onTimerStarted();
+        }
+        return newFragment;
+    }
+
+    @Override
+    public User getUserData() {
+        return user;
+    }
+
+    @Override
+    public User setUserData(String username, int score) {
+        this.user.setUsername(username);
+        this.user.setScore(score);
+        return null;
+    }
+
+    @Override
+    public void saveDataToBackend() {
+        quizInteractor.storeScore(user.getScore(), user.getUsername());
+    }
+
+    @Override
+    public void saveToSharedPrefs(Context context) {
+        quizInteractor.storeScoreSharedPrefs(context, user.getScore(), user.getUsername());
+    }
+
+
+    @Override
     public void setData(List<Question> question) {
         this.question = question;
         quizView.setQuestion(question, (QuestionView) quizInteractor.getFragments().get(0));
     }
 
-    //TODO combo :)
+    //TODO combo, here save result :)
     @Override
-    public void notifyUserAnswer(String correctAnswer, boolean checkAnswer) {
+    public void notifyUserAnswer(String correctAnswer, boolean checkAnswer, int currentScore) {
         if (checkAnswer) {
-            user.setScore(1);
-            quizView.changeScore(Integer.toString(user.getScore()));
+            user.setCurrentResult(currentScore);
+            quizView.changeScore(Integer.toString(user.getCurrentResult()));
         }
         quizView.changeClickedButtonText(correctAnswer);
     }
@@ -94,6 +144,15 @@ public class QuizPresenterImpl implements QuizPresenter, onDataListener {
     @Override
     public void goToNextFragment() {
         quizView.setFragmentTransition();
-        onTimerStarted();
     }
+
+    public void clearScoreText() {
+        quizView.clearTextViews();
+    }
+
+    public void clearScore(){
+        user.setCurrentResult(0);
+    }
+
+
 }

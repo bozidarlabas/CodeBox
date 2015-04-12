@@ -43,5 +43,9 @@ public abstract class BaseActivity extends ActionBarActivity {
         drawerFreagment.setup(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
     }
 
+    public NavigationDrawerFragment getNavigationDrawerFragment(){
+        return (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+    }
+
     protected abstract List<Object> getModules();
 }

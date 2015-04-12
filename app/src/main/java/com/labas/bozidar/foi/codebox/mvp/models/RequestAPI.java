@@ -12,8 +12,9 @@ import retrofit.http.POST;
  */
 public interface RequestAPI {
 
+    @FormUrlEncoded
     @POST("/CodeBox/codebox.php")
-    public void getQuestion(Callback<List<Question>> response);
+    public void getQuestion(@Field("questions") String questions, Callback<List<Question>> response);
 
     @FormUrlEncoded
     @POST("/CodeBox/registration.php")
@@ -22,5 +23,18 @@ public interface RequestAPI {
             @Field("password") String password,
             Callback<String> response);
 
+    @FormUrlEncoded
+    @POST("/CodeBox/login.php")
+    public void sendLoginRequest(
+            @Field("username") String username,
+            @Field("password") String password,
+            Callback<User> response);
 
+    @FormUrlEncoded
+    @POST("/CodeBox/codebox.php")
+    public void sendDatabaseStoreRequest(
+            @Field("user") String user,
+            @Field("score") int score,
+            @Field("username") String username,
+            Callback<String> response);
 }

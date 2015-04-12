@@ -2,6 +2,7 @@ package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
 import com.labas.bozidar.foi.codebox.mvp.interactors.LoginInteractor;
 import com.labas.bozidar.foi.codebox.mvp.listeners.OnLoginFInishedListener;
+import com.labas.bozidar.foi.codebox.mvp.models.User;
 import com.labas.bozidar.foi.codebox.mvp.presenters.LoginPresenter;
 import com.labas.bozidar.foi.codebox.mvp.views.LoginView;
 
@@ -30,8 +31,6 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
     }
 
 
-
-
     @Override
     public void onUsernameError() {
         loginView.setUsernameError();
@@ -43,8 +42,19 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
     }
 
     @Override
-    public void onSuccess() {
-        loginView.navigateToHome();
+    public void onSuccess(User user) {
+        loginView.navigateToHome(user);
+
+    }
+
+    @Override
+    public void onHideProgress() {
+        loginView.hideProgress();
+    }
+
+    @Override
+    public void onFailure() {
+        loginView.showErrorDialog();
     }
 
     //REGISTER (dialog inside activity)

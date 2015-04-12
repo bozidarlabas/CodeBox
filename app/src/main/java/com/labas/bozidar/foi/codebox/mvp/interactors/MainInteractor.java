@@ -1,5 +1,6 @@
 package com.labas.bozidar.foi.codebox.mvp.interactors;
 
+import android.content.Context;
 import android.view.View;
 
 import com.labas.bozidar.foi.codebox.mvp.listeners.OnButtonChangedListener;
@@ -9,4 +10,5 @@ import com.labas.bozidar.foi.codebox.mvp.listeners.OnButtonChangedListener;
  */
 public interface MainInteractor {
     public void changeBackgroundStyle(View view, OnButtonChangedListener listener);
+    public void restoreData(Context context, OnButtonChangedListener listener);
 }

@@ -1,6 +1,9 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters;
 
 import android.app.Fragment;
+import android.content.Context;
+
+import com.labas.bozidar.foi.codebox.mvp.models.User;
 
 import java.util.ArrayList;
 
@@ -14,4 +17,10 @@ public interface QuizPresenter {
     public void setFragments();
     public ArrayList<Fragment> getFragments();
     public void onTimerStarted();
+    public void onTImerStoped();
+    public Fragment getFragment(int fragmentCounter);
+    public User getUserData();
+    public User setUserData(String username, int score);
+    public void saveDataToBackend();
+    public void saveToSharedPrefs(Context context);
 }

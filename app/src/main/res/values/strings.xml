@@ -31,4 +31,6 @@
     <string name="register">Register</string>
     <string name="play">Play</string>
     <string name="exit">Exit</string>
+    <string name="total_score">Total score:</string>
+    <string name="score">Score:</string>
 </resources>

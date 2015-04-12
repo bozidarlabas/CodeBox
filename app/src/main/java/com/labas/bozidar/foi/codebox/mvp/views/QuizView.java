@@ -13,4 +13,5 @@ public interface QuizView {
     public void changeScore(String score);
     public void changeTimer(long time);
     public void setFragmentTransition();
+    public void clearTextViews();
 }

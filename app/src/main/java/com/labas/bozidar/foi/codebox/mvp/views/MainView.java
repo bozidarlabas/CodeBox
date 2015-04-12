@@ -11,4 +11,5 @@ public interface MainView {
     public void onChangePreviousButton(View view);
     public void setFragmentTransition(Fragment fragment);
     public void onChangeCounterText(String text);
+    public void onDataRestored(String username, int score);
 }
