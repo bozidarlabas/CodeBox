@@ -40,8 +40,8 @@ public class QuizPresenterImpl implements QuizPresenter, onDataListener {
 
 
     @Override
-    public void onQuizActivityStarted() {
-        quizInteractor.fetchData(this);
+    public void onQuizActivityStarted(int selectedLanguage) {
+        quizInteractor.fetchData(this, selectedLanguage);
     }
 
 

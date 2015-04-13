@@ -34,11 +34,13 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
     @Override
     public void onUsernameError() {
         loginView.setUsernameError();
+        loginView.hideProgress();
     }
 
     @Override
     public void onPasswordError() {
         loginView.setPasswordError();
+        loginView.hideProgress();
     }
 
     @Override

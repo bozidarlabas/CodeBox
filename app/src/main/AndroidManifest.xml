@@ -43,6 +43,10 @@
             android:name=".activities.RegistrationActivity"
             android:label="@string/title_activity_registration" >
         </activity>
+        <activity
+            android:name=".activities.TopPlayersActivity"
+            android:label="@string/title_activity_top_players" >
+        </activity>
     </application>
 
 </manifest>

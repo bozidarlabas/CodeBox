@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 
+import com.labas.bozidar.foi.codebox.R;
 import com.labas.bozidar.foi.codebox.mvp.interactors.QuizInteractor;
 import com.labas.bozidar.foi.codebox.mvp.listeners.onDataListener;
 import com.labas.bozidar.foi.codebox.mvp.models.Question;
@@ -35,17 +36,17 @@ public class QuizInteractorImpl implements QuizInteractor {
 
     //TODO here i will send request and fetch data from database and add load animatin and then go to quiz activity
     @Override
-    public void fetchData(final onDataListener listener) {
+    public void fetchData(final onDataListener listener, final int selectedLanguage) {
+        String language = getSelectedLanguage(selectedLanguage);
         RestAdapter adapter = new RestAdapter.Builder()
                 .setEndpoint(Constants.SERVER_ENDPOINT)
                 .build();
         RequestAPI api = adapter.create(RequestAPI.class);
-        api.getQuestion("questions", new Callback<List<Question>>() {
+        api.getQuestion("questions", language, new Callback<List<Question>>() {
             @Override
             public void success(List<Question> questions, Response response) {
-                listener.setData(questions);
+                    listener.setData(questions);
             }
-
             @Override
             public void failure(RetrofitError error) {
 
@@ -53,8 +54,33 @@ public class QuizInteractorImpl implements QuizInteractor {
         });
     }
 
+    public String getSelectedLanguage(int languageId){
+        String language = "";
+        switch(languageId){
+            case R.id.btnC:
+                language = "C";
+               break;
+            case R.id.btnCpp:
+                language = "C++";
+                break;
+            case R.id.btnCsharp:
+                language = "C#";
+                break;
+            case R.id.btnPython:
+                language = "Python";
+                break;
+            case R.id.btnJS:
+                language = "JavaScript";
+                break;
+            case R.id.btnRuby:
+                language = "Java";
+                break;
+        }
+        return language;
+    }
+
     @Override
-    public void storeScore(int score, String username){
+    public void storeScore(int score, String username) {
         RestAdapter adapter = new RestAdapter.Builder()
                 .setEndpoint(Constants.SERVER_ENDPOINT)
                 .build();
@@ -121,13 +147,13 @@ public class QuizInteractorImpl implements QuizInteractor {
         }
 
         public void onFinish() {
-            if(!lastQuestion)
+            if (!lastQuestion)
                 listener.goToNextFragment();
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
-            if(lastQuestion)
+            if (lastQuestion)
                 this.cancel();
             listener.changeTimer(millisUntilFinished / 1000);
         }

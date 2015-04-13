@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by bozidar on 09.04.15..
  */
 public interface QuizInteractor {
-    public void fetchData(onDataListener listener);
+    public void fetchData(onDataListener listener, int selectedLanguage);
     public void checkAnswer(String answer, String correct, onDataListener listener);
     public void addFragment(Fragment fragment);
     public ArrayList<Fragment> getFragments();

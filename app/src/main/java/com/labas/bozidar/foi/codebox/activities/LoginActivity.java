@@ -91,7 +91,7 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
 
     @Override
     public void showErrorDialog() {
-        notificationDialog.setDialogArgs();
+        notificationDialog.setDialogArgs(this, "Error", "Wrong username or password");
         notificationDialog.showDialog();
     }
 
@@ -104,6 +104,7 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
     public void klik() {
         String userName = userData.get(0).getText().toString();
         String password = userData.get(1).getText().toString();
+
         presenter.validate(userName, password);
     }
 

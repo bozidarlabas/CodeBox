@@ -27,6 +27,7 @@ public class LoginInteractorImpl implements LoginInteractor {
             error = true;
         }
 
+
         if(TextUtils.isEmpty(password)){
             listener.onPasswordError();
             error = true;
@@ -39,7 +40,8 @@ public class LoginInteractorImpl implements LoginInteractor {
 
                 @Override
                 public void success(User user, Response response) {
-                   if(user != null){
+
+                   if(user  != null){
                        listener.onSuccess(user);
                    }else{
                        listener.onFailure();
@@ -55,34 +57,15 @@ public class LoginInteractorImpl implements LoginInteractor {
             });
         }
 
-
-
-
-        /*new Handler().postDelayed(new Runnable() {
-            @Override public void run() {
-                boolean error = false;
-                if (TextUtils.isEmpty(username)){
-                    listener.onUsernameError();
-                    error = true;
-                }
-                if (TextUtils.isEmpty(password)){
-                    listener.onPasswordError();
-                    error = true;
-                }
-                if (!error){
-                    listener.onSuccess();
-                }
-            }
-        }, 100);
-        */
     }
 
     //TODO send data to backend where data will be stored in database
     @Override
     public void register(String username, String password) {
+        Log.d("tetere", password);
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(Constants.SERVER_ENDPOINT).build();
         RequestAPI post = restAdapter.create(RequestAPI.class);
-        post.sendRegistrationRequest(username, password, new Callback<String>() {
+        post.sendRegistrationRequest("registration", username, password, new Callback<String>() {
             @Override
             public void success(String s, Response response) {
                 Log.d("success", "success");
@@ -90,13 +73,8 @@ public class LoginInteractorImpl implements LoginInteractor {
 
             @Override
             public void failure(RetrofitError error) {
-                Log.d("error", "success");
+                Log.d("error", error.toString());
             }
         });
-
-
-
     }
-
-
 }

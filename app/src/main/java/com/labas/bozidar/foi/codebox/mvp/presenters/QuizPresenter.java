@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * Created by bozidar on 09.04.15..
  */
 public interface QuizPresenter {
-    public void onQuizActivityStarted();
+    public void onQuizActivityStarted(int idSelectedLanguage);
     public void onAnsweredQuestion(String answer, String correct);
     public void getCachedData(int fragmentIndex);
     public void setFragments();

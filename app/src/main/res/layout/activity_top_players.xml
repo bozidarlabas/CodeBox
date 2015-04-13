@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.labas.bozidar.foi.codebox.activities.TopPlayersActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar_red"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/app_bar"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

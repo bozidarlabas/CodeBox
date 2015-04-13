@@ -2,13 +2,12 @@ package com.labas.bozidar.foi.codebox.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +15,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.labas.bozidar.foi.codebox.R;
-import com.labas.bozidar.foi.codebox.adapters.MyAdapter;
-import com.labas.bozidar.foi.codebox.mvp.models.Information;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.labas.bozidar.foi.codebox.activities.TopPlayersActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 
 /**
@@ -31,8 +27,7 @@ import butterknife.InjectView;
  */
 public class NavigationDrawerFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private MyAdapter adapter;
+
 
     public static final String PREF_FILE_NAME = "testpref";
     public static final String KEY_USER_LEARNED_DRAWER = "user_learned_drawer";
@@ -50,6 +45,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @InjectView(R.id.tvScore)
     TextView tvScore;
+
 
     public NavigationDrawerFragment() {
         // Required empty public constructor
@@ -70,26 +66,11 @@ public class NavigationDrawerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        recyclerView = (RecyclerView) layout.findViewById(R.id.drawerList);
-        adapter = new MyAdapter(getActivity(), getData());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         ButterKnife.inject(this, layout);
         return layout;
     }
 
-    public static List<Information> getData() {
-        List<Information> myData = new ArrayList<>();
-        int[] icons = {R.drawable.ic_number1, R.drawable.ic_number2};
-        String[] titles = {"Friends", "Rank",};
-        for (int i = 0; i < icons.length && i < titles.length; i++) {
-            Information current = new Information();
-            current.setIconId(icons[i]);
-            current.setTitle(titles[i]);
-            myData.add(current);
-        }
-        return myData;
-    }
+
 
 
     public void setup(int fragmenId, DrawerLayout drawerLayout, final Toolbar toolbar) {
@@ -148,7 +129,11 @@ public class NavigationDrawerFragment extends Fragment {
     private void setViews(){
         tvName.setText("username: " + username);
         tvScore.setText("Total score: " + score);
+    }
 
+    @OnClick(R.id.tvTopPLayers)
+    public void navigateToTopPlayersActivity(){
+        startActivity(new Intent(getActivity(), TopPlayersActivity.class));
     }
 
     public static void saveToPreferences(Context context, String preferenceName, String preferenceValue) {

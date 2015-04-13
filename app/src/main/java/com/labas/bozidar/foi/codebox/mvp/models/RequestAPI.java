@@ -14,11 +14,15 @@ public interface RequestAPI {
 
     @FormUrlEncoded
     @POST("/CodeBox/codebox.php")
-    public void getQuestion(@Field("questions") String questions, Callback<List<Question>> response);
+    public void getQuestion(
+            @Field("questions") String questions,
+            @Field("language") String language,
+            Callback<List<Question>> response);
 
     @FormUrlEncoded
     @POST("/CodeBox/registration.php")
     public void sendRegistrationRequest(
+            @Field("registration") String registration,
             @Field("username") String username,
             @Field("password") String password,
             Callback<String> response);
@@ -37,4 +41,10 @@ public interface RequestAPI {
             @Field("score") int score,
             @Field("username") String username,
             Callback<String> response);
+
+    @FormUrlEncoded
+    @POST("/CodeBox/codebox.php")
+    public void sendPlayersRequest(
+            @Field("allusers") String users,
+            Callback<List<User>> response);
 }

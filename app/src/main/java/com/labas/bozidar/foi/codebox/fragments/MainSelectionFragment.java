@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.labas.bozidar.foi.codebox.R;
+import com.labas.bozidar.foi.codebox.dialogs.NotificationDialog;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -17,6 +18,7 @@ import butterknife.OnClick;
 public class MainSelectionFragment extends Fragment {
 
     OnActivityTransition listener;
+    private NotificationDialog notificationDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -26,7 +28,11 @@ public class MainSelectionFragment extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        notificationDialog = new NotificationDialog(getActivity());
+    }
 
     @OnClick(R.id.btnPlay)
     protected void playQuiz(View v) {
@@ -35,8 +41,8 @@ public class MainSelectionFragment extends Fragment {
 
     @OnClick(R.id.btnExit)
     public void exitApplication(View v) {
-        getActivity().finish();
-        System.exit(0);
+        notificationDialog.setDialogArgs(getActivity(), "Exit", "Are you sure you want to exit?");
+        notificationDialog.showDialog();
     }
 
     @Override

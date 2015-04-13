@@ -33,4 +33,5 @@
     <string name="exit">Exit</string>
     <string name="total_score">Total score:</string>
     <string name="score">Score:</string>
+    <string name="title_activity_top_players">TopPlayersActivity</string>
 </resources>

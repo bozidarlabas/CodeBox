@@ -44,6 +44,7 @@ public class QuizActivity extends BaseActivity implements QuizView, OnQuestionAn
     private String username;
     private int totalScore;
     private boolean isActivityDestroyed;
+    private int selectedBtnID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,9 @@ public class QuizActivity extends BaseActivity implements QuizView, OnQuestionAn
         setContentView(R.layout.activity_quiz);
         ButterKnife.inject(this);
         setFragment();
-        onActivityStarted();
         main();
+        onActivityStarted();
+
     }
 
     private void main() {
@@ -60,6 +62,7 @@ public class QuizActivity extends BaseActivity implements QuizView, OnQuestionAn
         if (extras != null) {
             username = extras.getString(Constants.KEY_USERNAME);
             totalScore = extras.getInt(Constants.KEY_SCORE);
+            selectedBtnID = extras.getInt(Constants.SELECTED_LANGUAGE);
             quizPresenter.setUserData(username, totalScore);
         }
     }
@@ -83,14 +86,18 @@ public class QuizActivity extends BaseActivity implements QuizView, OnQuestionAn
 
     public void onActivityStarted() {
         score.setText("0");
-        quizPresenter.onQuizActivityStarted();
+        quizPresenter.onQuizActivityStarted(selectedBtnID);
         quizPresenter.onTimerStarted();
     }
 
     @Override
     public void setQuestion(List<Question> question, QuestionView questionView) {
-        questionView.onSetQuestion(question);
-        questionView.onSetAnswers(question);
+        if(question.get(0).getOdgovor_a() != null){
+            questionView.onSetQuestion(question);
+            questionView.onSetAnswers(question);
+        }else{
+            onBackPressed();
+        }
     }
 
     @Override

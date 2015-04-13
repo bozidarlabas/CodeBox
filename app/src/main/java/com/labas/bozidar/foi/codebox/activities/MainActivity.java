@@ -12,7 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.andexert.library.RippleView;
 import com.labas.bozidar.foi.codebox.R;
+import com.labas.bozidar.foi.codebox.dialogs.NotificationDialog;
 import com.labas.bozidar.foi.codebox.fragments.CounterFragment;
 import com.labas.bozidar.foi.codebox.fragments.MainLogoFragment;
 import com.labas.bozidar.foi.codebox.fragments.MainSelectionFragment;
@@ -40,6 +42,8 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
 
     private String username;
     private int totalScore;
+    private NotificationDialog notificationDialog;
+    private RippleView selectedBtn;
 
 
     @Override
@@ -53,10 +57,10 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
         setNavigationDrawer();
         setFragment();
         ButterKnife.inject(this);
-
     }
 
     private void main(boolean init){
+        notificationDialog = new NotificationDialog(this);
         if(init){
             Bundle extras = getIntent().getExtras();
             if(extras != null){
@@ -121,6 +125,7 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
 
     @OnClick({R.id.btnC, R.id.btnCpp, R.id.btnCsharp, R.id.btnPython, R.id.btnJS, R.id.btnRuby})
     public void onClick(View view) {
+        this.selectedBtn = (RippleView)view;
         mainPresenter.onLangButtonClicked(view);
     }
 
@@ -162,6 +167,7 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
         Intent intent = new Intent(this, QuizActivity.class);
         intent.putExtra(Constants.KEY_USERNAME, username);
         intent.putExtra(Constants.KEY_SCORE, totalScore);
+        intent.putExtra(Constants.SELECTED_LANGUAGE, selectedBtn.getId());
         startActivity(intent);
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
     }
@@ -175,5 +181,11 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
     @Override
     public void onDrawerDataChanged() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        notificationDialog.setDialogArgs(this, "Exit", "Are you sure you want to exit?");
+        notificationDialog.showDialog();
     }
 }
