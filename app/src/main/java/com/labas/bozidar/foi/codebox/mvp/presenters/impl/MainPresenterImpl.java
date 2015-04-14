@@ -34,6 +34,11 @@ public class MainPresenterImpl implements MainPresenter, OnButtonChangedListener
     }
 
     @Override
+    public void setRegisteredUser(Context context) {
+        mainInteractor.storeScoreSharedPrefs(context, this);
+    }
+
+    @Override
     public void changeSelectedButtonStyle(View view) {
         mainView.onChangeSelectedButton(view);
     }
@@ -58,4 +63,6 @@ public class MainPresenterImpl implements MainPresenter, OnButtonChangedListener
     public void setRestoredData(String username, int score) {
         mainView.onDataRestored(username, score);
     }
+
+
 }

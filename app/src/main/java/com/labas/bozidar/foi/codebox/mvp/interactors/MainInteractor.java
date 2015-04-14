@@ -11,4 +11,5 @@ import com.labas.bozidar.foi.codebox.mvp.listeners.OnButtonChangedListener;
 public interface MainInteractor {
     public void changeBackgroundStyle(View view, OnButtonChangedListener listener);
     public void restoreData(Context context, OnButtonChangedListener listener);
+    public void storeScoreSharedPrefs(Context context, OnButtonChangedListener listener);
 }

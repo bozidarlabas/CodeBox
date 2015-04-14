@@ -48,4 +48,12 @@ public class MainInteractorImpl implements MainInteractor {
         int score = sharedPreferences.getInt(Constants.KEY_SCORE, 0);
         listener.setRestoredData(username, score);
     }
+
+    @Override
+    public void storeScoreSharedPrefs(Context context, OnButtonChangedListener listener) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOGIN_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Constants.LOGIN_KEY, "storedUser");
+        editor.apply();
+    }
 }

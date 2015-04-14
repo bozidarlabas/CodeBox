@@ -61,6 +61,7 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
 
     private void main(boolean init){
         notificationDialog = new NotificationDialog(this);
+        mainPresenter.setRegisteredUser(this);
         if(init){
             Bundle extras = getIntent().getExtras();
             if(extras != null){
@@ -71,7 +72,6 @@ public class MainActivity extends BaseActivity implements MainView, MainSelectio
         }else{
             mainPresenter.onDataRestored(this);
         }
-
     }
 
     private void setFragment() {

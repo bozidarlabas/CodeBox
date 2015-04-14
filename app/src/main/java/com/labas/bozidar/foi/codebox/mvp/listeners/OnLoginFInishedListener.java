@@ -15,4 +15,7 @@ public interface OnLoginFInishedListener {
     public void onHideProgress();
 
     public void onFailure();
+
+    public void onHideREgisterBtn();
+
 }

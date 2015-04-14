@@ -92,12 +92,8 @@ public class QuizActivity extends BaseActivity implements QuizView, OnQuestionAn
 
     @Override
     public void setQuestion(List<Question> question, QuestionView questionView) {
-        if(question.get(0).getOdgovor_a() != null){
             questionView.onSetQuestion(question);
             questionView.onSetAnswers(question);
-        }else{
-            onBackPressed();
-        }
     }
 
     @Override

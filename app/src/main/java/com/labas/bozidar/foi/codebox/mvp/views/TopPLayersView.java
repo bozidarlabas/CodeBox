@@ -1,4 +1,4 @@
-package com.labas.bozidar.foi.codebox.activities;
+package com.labas.bozidar.foi.codebox.mvp.views;
 
 import com.labas.bozidar.foi.codebox.mvp.models.User;
 

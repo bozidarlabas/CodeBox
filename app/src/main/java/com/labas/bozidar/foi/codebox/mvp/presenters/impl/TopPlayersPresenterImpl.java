@@ -1,6 +1,6 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
-import com.labas.bozidar.foi.codebox.activities.TopPLayersView;
+import com.labas.bozidar.foi.codebox.mvp.views.TopPLayersView;
 import com.labas.bozidar.foi.codebox.mvp.models.RequestAPI;
 import com.labas.bozidar.foi.codebox.mvp.models.User;
 import com.labas.bozidar.foi.codebox.mvp.presenters.TopPlayersPresenter;

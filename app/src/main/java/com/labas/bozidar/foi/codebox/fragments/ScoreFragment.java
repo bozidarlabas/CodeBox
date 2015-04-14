@@ -38,7 +38,6 @@ public class ScoreFragment extends Fragment implements View.OnClickListener{
     public static ScoreFragment newInstance(String score, String totalScore) {
         ScoreFragment fragment = new ScoreFragment();
 
-
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, score);
         args.putString(ARG_PARAM2, totalScore);

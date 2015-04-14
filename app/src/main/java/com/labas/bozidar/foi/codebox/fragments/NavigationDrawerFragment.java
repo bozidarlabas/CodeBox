@@ -121,9 +121,10 @@ public class NavigationDrawerFragment extends Fragment {
         setViews();
     }
 
+
     public void setData(String username, int score) {
-        this.username = username;
-        this.score = score;
+        tvName.setText("username: " + username);
+        tvScore.setText("Total score: " + score);
     }
 
     private void setViews(){

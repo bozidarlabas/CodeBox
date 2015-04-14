@@ -36,6 +36,8 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
     ProgressBar progressBar;
     @InjectView(R.id.btnLogin)
     Button btnLogin;
+    @InjectView(R.id.btnRegistration)
+    Button btnREgistration;
     @InjectViews({R.id.etUsername, R.id.etPassword})
     List<EditText> userData;
     private RegisterDialog registerDialog;
@@ -54,6 +56,7 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
         registerDialog = new RegisterDialog(this);
         notificationDialog = new NotificationDialog(this);
         registerDialog.setOnButtonCLickListener(this);
+        presenter.checkRegisteredUser(this);
     }
 
     private void setLayouts() {
@@ -96,6 +99,16 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
     }
 
     @Override
+    public void hideRegisterBtn() {
+        btnREgistration.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showRegisterBtn() {
+        btnREgistration.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     protected List<Object> getModules() {
         return Arrays.<Object>asList(new LoginModule(this));
     }
@@ -105,7 +118,7 @@ public class LoginActivity extends BaseActivity implements LoginView, RegisterDi
         String userName = userData.get(0).getText().toString();
         String password = userData.get(1).getText().toString();
 
-        presenter.validate(userName, password);
+        presenter.validate(userName, password, this);
     }
 
     @OnClick(R.id.btnRegistration)

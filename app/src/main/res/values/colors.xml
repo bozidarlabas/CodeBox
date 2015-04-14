@@ -3,7 +3,6 @@
     <color name="accentcolor">#ef5350</color>
     <color name="primarycolor">#000000</color>
     <color name="primarycolordark">#ffffff</color>
-
     <color name="background_white">#fffff3e9</color>
     <color name="button_selected">#e06e73</color>
     <color name="text_grey">#ff777766</color>
@@ -11,6 +10,4 @@
     <color name="text_hint">#ff889999</color>
     <color name="secondary">#ef5350</color>
     <color name="disabled">#e09e73</color>
-
-
 </resources>

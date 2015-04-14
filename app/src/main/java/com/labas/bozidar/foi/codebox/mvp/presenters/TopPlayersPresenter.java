@@ -1,6 +1,6 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters;
 
-import com.labas.bozidar.foi.codebox.activities.TopPLayersView;
+import com.labas.bozidar.foi.codebox.mvp.views.TopPLayersView;
 
 /**
  * Created by bozidar on 12.04.15..
