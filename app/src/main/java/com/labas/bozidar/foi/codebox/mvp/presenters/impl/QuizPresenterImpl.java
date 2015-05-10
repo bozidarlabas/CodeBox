@@ -2,6 +2,7 @@ package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.util.Log;
 
 import com.labas.bozidar.foi.codebox.fragments.ScoreFragment;
 import com.labas.bozidar.foi.codebox.fragments.questions.QuestionFive;
@@ -81,6 +82,7 @@ public class QuizPresenterImpl implements QuizPresenter, onDataListener {
     @Override
     public Fragment getFragment(int fragmentCounter) {
         Fragment newFragment;
+        Log.d("korisnik: ", user.getScore() + "");
         if (fragmentCounter == 5) {
             user.setScore(user.getScore() + user.getCurrentResult());
             String score = Integer.toString(user.getCurrentResult());

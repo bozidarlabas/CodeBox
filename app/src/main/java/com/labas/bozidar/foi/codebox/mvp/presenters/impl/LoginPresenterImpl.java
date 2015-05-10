@@ -1,7 +1,5 @@
 package com.labas.bozidar.foi.codebox.mvp.presenters.impl;
 
-import android.content.Context;
-
 import com.labas.bozidar.foi.codebox.mvp.interactors.LoginInteractor;
 import com.labas.bozidar.foi.codebox.mvp.listeners.OnLoginFInishedListener;
 import com.labas.bozidar.foi.codebox.mvp.models.User;
@@ -27,9 +25,9 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
 
     //LOGIN (activity)
     @Override
-    public void validate(String username, String password, Context context) {
+    public void validate(String username, String password) {
         loginView.showProgress();
-        loginInteractor.login(username, password, context, this);
+        loginInteractor.login(username, password, this);
     }
 
 
@@ -61,11 +59,6 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
         loginView.showErrorDialog();
     }
 
-    @Override
-    public void onHideREgisterBtn() {
-        loginView.hideRegisterBtn();
-    }
-
     //REGISTER (dialog inside activity)
 
     @Override
@@ -73,10 +66,7 @@ public class LoginPresenterImpl implements LoginPresenter, OnLoginFInishedListen
         loginInteractor.register(username, password);
     }
 
-    @Override
-    public void checkRegisteredUser(Context context) {
-        loginInteractor.restoreData(context, this);
-    }
+
 
 
 }

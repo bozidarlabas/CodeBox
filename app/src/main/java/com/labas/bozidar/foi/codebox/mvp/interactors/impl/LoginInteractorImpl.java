@@ -1,7 +1,5 @@
 package com.labas.bozidar.foi.codebox.mvp.interactors.impl;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -21,10 +19,8 @@ import retrofit.client.Response;
  */
 public class LoginInteractorImpl implements LoginInteractor {
 
-    private Context context;
-
     @Override
-    public void login(final String username, final String password, final Context context, final OnLoginFInishedListener listener) {
+    public void login(final String username, final String password, final OnLoginFInishedListener listener) {
         boolean error = false;
         if (TextUtils.isEmpty(username)){
             listener.onUsernameError();
@@ -47,7 +43,6 @@ public class LoginInteractorImpl implements LoginInteractor {
 
                    if(user  != null){
                        listener.onSuccess(user);
-                       storeScoreSharedPrefs(context, user.getScore(), user.getUsername());
                    }else{
                        listener.onFailure();
                    }
@@ -67,6 +62,7 @@ public class LoginInteractorImpl implements LoginInteractor {
     //TODO send data to backend where data will be stored in database
     @Override
     public void register(String username, String password) {
+        Log.d("tetere", password);
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(Constants.SERVER_ENDPOINT).build();
         RequestAPI post = restAdapter.create(RequestAPI.class);
         post.sendRegistrationRequest("registration", username, password, new Callback<String>() {
@@ -80,21 +76,5 @@ public class LoginInteractorImpl implements LoginInteractor {
                 Log.d("error", error.toString());
             }
         });
-    }
-
-    public void restoreData(Context context, OnLoginFInishedListener listener) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.LOGIN_KEY,Context.MODE_PRIVATE);
-        String key = sharedPreferences.getString(Constants.LOGIN_KEY, "");
-        if(key != ""){
-            listener.onHideREgisterBtn();
-        }
-    }
-
-    public void storeScoreSharedPrefs(Context context, int score, String username) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.PREFS_KEY, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(Constants.KEY_USERNAME, username);
-        editor.putInt(Constants.KEY_SCORE, score);
-        editor.apply();
     }
 }

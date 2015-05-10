@@ -90,6 +90,7 @@ public class QuizInteractorImpl implements QuizInteractor {
             public void success(String s, Response response) {
 
             }
+
             @Override
             public void failure(RetrofitError error) {
 

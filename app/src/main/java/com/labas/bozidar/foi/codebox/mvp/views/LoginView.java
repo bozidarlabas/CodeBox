@@ -17,8 +17,4 @@ public interface LoginView {
     public void navigateToHome(User user);
 
     public void showErrorDialog();
-
-    public void hideRegisterBtn();
-
-    public void showRegisterBtn();
 }

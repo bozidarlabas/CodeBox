@@ -9,5 +9,4 @@ import android.view.View;
 public interface MainPresenter {
     public void onLangButtonClicked(View view);
     public void onDataRestored(Context context);
-    public void setRegisteredUser(Context context);
 }

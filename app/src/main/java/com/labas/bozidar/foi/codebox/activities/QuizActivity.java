@@ -13,6 +13,7 @@ import com.labas.bozidar.foi.codebox.mvp.listeners.OnQuestionAnswered;
 import com.labas.bozidar.foi.codebox.mvp.models.Question;
 import com.labas.bozidar.foi.codebox.mvp.modules.QuizModule;
 import com.labas.bozidar.foi.codebox.mvp.presenters.QuizPresenter;
+
 import com.labas.bozidar.foi.codebox.mvp.views.QuestionView;
 import com.labas.bozidar.foi.codebox.mvp.views.QuizView;
 import com.labas.bozidar.foi.codebox.util.Constants;
@@ -92,8 +93,12 @@ public class QuizActivity extends BaseActivity implements QuizView, OnQuestionAn
 
     @Override
     public void setQuestion(List<Question> question, QuestionView questionView) {
+        if(question.get(0).getOdgovor_a() != null){
             questionView.onSetQuestion(question);
             questionView.onSetAnswers(question);
+        }else{
+            onBackPressed();
+        }
     }
 
     @Override
