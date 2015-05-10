@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="*"
+    android:weightSum="3">
+
+
+    <TableRow
+        style="@style/SpringboardTableRow"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:background="#fff">
+
+        <com.andexert.library.RippleView
+            android:id="@+id/btnC"
+            style="@style/SpringboardItemLayout"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:background="@color/accentcolor"
+            android:onClick="openCLanguage"
+            ripple:rv_color="@color/accentcolor"
+            ripple:rv_type="rectangle">
+
+            <TextView
+                android:id="@+id/tvC"
+                style="@style/SpringboardItemText"
+                android:tag="lala"
+                android:text="@string/cLanguage"
+                android:textSize="@dimen/text_large" />
+        </com.andexert.library.RippleView>
+
+        <com.andexert.library.RippleView
+            android:id="@+id/btnCpp"
+            style="@style/SpringboardItemLayout"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:background="@color/accentcolor"
+            ripple:rv_color="@color/accentcolor"
+            ripple:rv_type="rectangle">
+
+            <TextView
+                style="@style/SpringboardItemText"
+                android:tag="lala"
+                android:text="@string/cppLanguage"
+                android:textSize="@dimen/text_large" />
+        </com.andexert.library.RippleView>
+
+        <com.andexert.library.RippleView
+            android:id="@+id/btnCsharp"
+            style="@style/SpringboardItemLayout"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:background="@color/accentcolor"
+            ripple:rv_color="@color/accentcolor"
+            ripple:rv_type="rectangle">
+
+            <TextView
+                style="@style/SpringboardItemText"
+                android:tag="lala"
+                android:text="@string/cSharpLanguage"
+                android:textSize="@dimen/text_large" />
+        </com.andexert.library.RippleView>
+    </TableRow>
+
+
+    <TableRow
+        android:layout_gravity="center_horizontal|center_vertical"
+        style="@style/SpringboardTableRow"
+        android:layout_weight="1"
+        android:background="@color/accentcolor">
+
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_column="0"
+            android:layout_span="4">
+        </FrameLayout>
+
+    </TableRow>
+
+
+    <TableRow
+        style="@style/SpringboardTableRow"
+        android:layout_weight="1">
+
+        <com.andexert.library.RippleView
+            android:id="@+id/btnPython"
+            style="@style/SpringboardItemLayout"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/accentcolor"
+            ripple:rv_color="@color/accentcolor"
+            ripple:rv_type="rectangle">
+
+            <TextView
+                style="@style/SpringboardItemText"
+                android:tag="lala"
+                android:text="@string/pythonLanguage"
+                android:textSize="@dimen/text_large" />
+        </com.andexert.library.RippleView>
+
+        <com.andexert.library.RippleView
+            android:id="@+id/btnJS"
+            style="@style/SpringboardItemLayout"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/accentcolor"
+            ripple:rv_color="@color/accentcolor"
+            ripple:rv_type="rectangle">
+
+            <TextView
+                style="@style/SpringboardItemText"
+                android:tag="lala"
+                android:text="@string/jsLanguage"
+                android:textSize="@dimen/text_large" />
+        </com.andexert.library.RippleView>
+
+        <com.andexert.library.RippleView
+            android:id="@+id/btnRuby"
+            style="@style/SpringboardItemLayout"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@color/accentcolor"
+            ripple:rv_color="@color/accentcolor"
+            ripple:rv_type="rectangle">
+
+            <TextView
+                style="@style/SpringboardItemText"
+                android:tag="lala"
+                android:text="@string/javaLanguage"
+                android:textSize="@dimen/text_large" />
+        </com.andexert.library.RippleView>
+    </TableRow>
+</TableLayout>
+
+
