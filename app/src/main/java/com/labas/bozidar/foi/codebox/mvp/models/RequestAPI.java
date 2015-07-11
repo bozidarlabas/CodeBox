@@ -13,14 +13,14 @@ import retrofit.http.POST;
 public interface RequestAPI {
 
     @FormUrlEncoded
-    @POST("/CodeBox/codebox.php")
+    @POST("/WebDiP/2013_projekti/WebDiP2013_038/CodeBox/codebox.php")
     public void getQuestion(
             @Field("questions") String questions,
             @Field("language") String language,
             Callback<List<Question>> response);
 
     @FormUrlEncoded
-    @POST("/CodeBox/registration.php")
+    @POST("/WebDiP/2013_projekti/WebDiP2013_038/CodeBox/registration.php")
     public void sendRegistrationRequest(
             @Field("registration") String registration,
             @Field("username") String username,
@@ -28,14 +28,14 @@ public interface RequestAPI {
             Callback<String> response);
 
     @FormUrlEncoded
-    @POST("/CodeBox/login.php")
+    @POST("/WebDiP/2013_projekti/WebDiP2013_038/CodeBox/login.php")
     public void sendLoginRequest(
             @Field("username") String username,
             @Field("password") String password,
             Callback<User> response);
 
     @FormUrlEncoded
-    @POST("/CodeBox/codebox.php")
+    @POST("/WebDiP/2013_projekti/WebDiP2013_038/CodeBox/codebox.php")
     public void sendDatabaseStoreRequest(
             @Field("user") String user,
             @Field("score") int score,
@@ -43,7 +43,7 @@ public interface RequestAPI {
             Callback<String> response);
 
     @FormUrlEncoded
-    @POST("/CodeBox/codebox.php")
+    @POST("/WebDiP/2013_projekti/WebDiP2013_038/CodeBox/codebox.php")
     public void sendPlayersRequest(
             @Field("allusers") String users,
             Callback<List<User>> response);
